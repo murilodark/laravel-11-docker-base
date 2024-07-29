@@ -1,0 +1,45 @@
+#acessar o os dontainers no linux do docker
+docker compose exec app bash
+#instala as dependencias dentro do container
+docker composer install
+#gerar a key do laravel dentro do container
+php artisan key:generate   
+#crio o arquivo database/database.sqlite
+touch database/database.sqlite
+#agora gerar as tabelas do laravel dentro do container
+php artisan migrate
+#comenta a linha #DB_CONNECTION=sqlite
+# e descomenta as linhas do mysql que é o banco que utilizaremos
+#gero as tabelas novamente
+php artisan migrate
+
+#limpe o arquivo do db para garantir, remova o arquivo em
+Remove-Item -Recurse -Force .\dbdata
+
+#em casos de erros limpe do cache do laravel
+php artisan cache:clear
+php artisan config:cache
+php artisan route:cache
+php artisan view:clear
+
+
+
+
+
+#criando a autenticação, utiliza o breeze do laravel
+#acessa o container "docker compose exec app bash"
+#utiliza o composer do container para instlar
+composer require laravel/breeze --dev
+
+#atualiza instala o breeze
+php artisan breeze:install
+
+#gere o arquivo manifest, dando o build
+ npm run build
+
+#roda a aplicação 
+npm run dev
+
+
+
+
