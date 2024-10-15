@@ -1,13 +1,18 @@
+#instalar as dependêcias
+docker-compose exec app composer install
+
 #acessar o os dontainers no linux do docker
 docker compose exec app bash
 #instala as dependencias dentro do container
-docker composer install
+composer install
 #gerar a key do laravel dentro do container
 php artisan key:generate   
 #crio o arquivo database/database.sqlite
 touch database/database.sqlite
+
 #agora gerar as tabelas do laravel dentro do container
 php artisan migrate
+
 #comenta a linha #DB_CONNECTION=sqlite
 # e descomenta as linhas do mysql que é o banco que utilizaremos
 #gero as tabelas novamente
